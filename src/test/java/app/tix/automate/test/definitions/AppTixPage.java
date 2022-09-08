@@ -65,11 +65,6 @@ public class AppTixPage {
     public void validateInformationMoviesAndBioscope() throws InterruptedException {
         System.out.println("validate information movies and bioscope");
         String bioscopeContact =  config.driver.findElement(By.id("id.tix.android:id/tv_contact")).getText();
-        //Assert.assertEquals("SUMMARECON MAL BEKASI LT. 3\n" +
-        //        "Jl. Bulevar Ahmad Yani\n" +
-        //        "Bekasi", bioscopeAddress);
         Assert.assertEquals("(021)29572421", bioscopeContact);
-
-
     }
 }
