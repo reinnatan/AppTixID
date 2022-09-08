@@ -81,7 +81,7 @@ Tech Stack
 
     </project>
 
-# Screen Result
+# Test Result
 ![](screenshoot/result.gif)
 
 
