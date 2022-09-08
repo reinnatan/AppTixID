@@ -31,7 +31,7 @@ public class AppiumConfig {
             caps.setCapability("platformVersion", "13.0");
             caps.setCapability("noReset", true);
             driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps);
-            wait = new WebDriverWait(driver, 3);
+            wait = new WebDriverWait(driver, 6);
 
         }catch (Exception e){
             System.out.println("Terjadi Error "+e.getMessage());

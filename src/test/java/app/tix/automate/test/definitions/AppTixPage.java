@@ -36,6 +36,7 @@ public class AppTixPage {
 
     @And("Search city region Bekasi")
     public void searchCityRegionBekasi(){
+
         System.out.println("Search city region bekasi");
         config.wait.until(ExpectedConditions.visibilityOfElementLocated(selectCityText)).click();
         config.wait.until(ExpectedConditions.visibilityOfElementLocated(searchCityTextBox)).sendKeys("Bekasi");
@@ -64,7 +65,7 @@ public class AppTixPage {
     @Then("Validate information movies and bioscope")
     public void validateInformationMoviesAndBioscope() throws InterruptedException {
         System.out.println("validate information movies and bioscope");
-        String bioscopeContact =  config.driver.findElement(By.id("id.tix.android:id/tv_contact")).getText();
+        String bioscopeContact = config.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id.tix.android:id/tv_contact"))).getText();
         Assert.assertEquals("(021)29572421", bioscopeContact);
     }
 }
