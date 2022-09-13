@@ -1,8 +1,7 @@
 package app.tix.automate.test.definitions;
 
-import app.tix.automate.automate.page.RegisterPage;
+import app.tix.automate.automate.page.register.function.RegisterPage;
 import app.tix.automate.test.connectdevice.BaseConfigDeviceFarm;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.cucumber.java.*;
 import io.cucumber.java.en.And;
@@ -11,19 +10,16 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.net.URL;
-
 
 public class AppTixPage {
     @Autowired
-    private RegisterPage config;
+    private RegisterPage page;
 
     By allowButton = By.id("com.android.permissioncontroller:id/permission_allow_one_time_button");
     By selectCityText = By.id("id.tix.android:id/tv_city");
@@ -59,16 +55,15 @@ public class AppTixPage {
     @Given("Open AppTixId apps")
     public void openAppTixIdDashboard(){
         System.out.println("Open AppTixId apps");
+        page.dashboarPage();
         //boolean display = config.wait.until(ExpectedConditions.visibilityOfElementLocated(allowButton)).isDisplayed();
         //if(display) {
         //    config.wait.until(ExpectedConditions.visibilityOfElementLocated(allowButton)).click();
         //}
-
     }
 
     @And("Search city region Bekasi")
     public void searchCityRegionBekasi(){
-
         System.out.println("Search city region bekasi");
         wait.until(ExpectedConditions.visibilityOfElementLocated(selectCityText)).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchCityTextBox)).sendKeys("Bekasi");
