@@ -1,6 +1,6 @@
 package app.tix.automate.test.definitions;
 
-import app.tix.automate.automate.config.AppiumConfig;
+import app.tix.automate.automate.page.RegisterPage;
 import app.tix.automate.test.connectdevice.BaseConfigDeviceFarm;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -23,8 +23,7 @@ import java.net.URL;
 
 public class AppTixPage {
     @Autowired
-    private AppiumConfig config;
-
+    private RegisterPage config;
 
     By allowButton = By.id("com.android.permissioncontroller:id/permission_allow_one_time_button");
     By selectCityText = By.id("id.tix.android:id/tv_city");
