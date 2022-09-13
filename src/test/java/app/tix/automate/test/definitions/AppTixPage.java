@@ -35,7 +35,7 @@ public class AppTixPage {
     By bioscopeBottomButtonTab = By.id("id.tix.android:id/navigation_theater");
 
     WebDriverWait wait;
-    ThreadLocal<AndroidDriver<MobileElement>> driver = new ThreadLocal<>();
+    AndroidDriver driver;
 
     @Before
     public void fungsiDipanggil(Scenario scenario){
@@ -47,13 +47,12 @@ public class AppTixPage {
         ApplicationContext context
                 = new AnnotationConfigApplicationContext(
                 BaseConfigDeviceFarm.class);
-        DesiredCapabilities caps = (DesiredCapabilities) context.getBean("scenarioName", scenario.getName().replaceAll(" ",""));
+
         try {
-            driver.set( new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps));
-            wait = new WebDriverWait(driver.get(), 6);
+            driver = (AndroidDriver) context.getBean("scenarioName", scenario.getName().replaceAll(" ",""));
+            wait = new WebDriverWait(driver, 6);
         }catch (Exception e){
             System.out.println("Terjadi Error "+e.getMessage());
-            driver.get().quit();
         }
     }
 
@@ -83,13 +82,13 @@ public class AppTixPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(bioscopeBottomButtonTab)).click();
         By mallBekasiText = By.xpath("//android.widget.TextView[@resource-id='id.tix.android:id/tv_cinema_name' and @text='SUMMARECON MAL BEKASI XXI']");
 
-        while (driver.get().findElements(mallBekasiText).size()==0){
-            Dimension size = driver.get().manage().window().getSize();
+        while (driver.findElements(mallBekasiText).size()==0){
+            Dimension size = driver.manage().window().getSize();
             int starty = (int) (size.height * 0.80);
             int endy = (int) (size.height * 0.20);
             int startx = size.width / 2;
             System.out.println("starty = " + starty + " ,endy = " + endy + " , startx = " + startx);
-            driver.get().swipe(startx, starty, startx, endy, 3000);
+            driver.swipe(startx, starty, startx, endy, 3000);
         }
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(mallBekasiText)).click();
@@ -105,7 +104,7 @@ public class AppTixPage {
 
     @After
     public void dispatchDriver(){
-        driver.get().quit();
+        driver.quit();
     }
 
 
