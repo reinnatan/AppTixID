@@ -29,7 +29,7 @@ public class BaseConfigDeviceFarm {
         caps.setCapability("build",scenarioName);
 
         try {
-            driver.set( new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps));
+            driver.set(new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps));
             return driver.get();
         }catch (Exception e){
             System.out.println("Terjadi Error "+e.getMessage());

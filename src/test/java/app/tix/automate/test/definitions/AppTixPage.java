@@ -39,13 +39,12 @@ public class AppTixPage {
                 .getStackTrace()[0]
                 .getMethodName();
         //System.out.println("Fungsi Dipanggil "+nameofCurrMethod);
-
         ApplicationContext context
                 = new AnnotationConfigApplicationContext(
                 BaseConfigDeviceFarm.class);
         try {
             //first case
-            driver = (AndroidDriver) context.getBean(AndroidDriver.class, scenario.getName());
+            driver = context.getBean(AndroidDriver.class, scenario.getName());
 
             //second case
             //driver = (AndroidDriver) context.getBean("scenarioName", scenario.getName()
