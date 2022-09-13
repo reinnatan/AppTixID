@@ -44,8 +44,12 @@ public class AppTixPage {
                 = new AnnotationConfigApplicationContext(
                 BaseConfigDeviceFarm.class);
         try {
-            driver = (AndroidDriver) context.getBean("scenarioName", scenario.getName()
-                    .replaceAll(" ",""));
+            //first case
+            driver = (AndroidDriver) context.getBean(AndroidDriver.class, scenario.getName());
+
+            //second case
+            //driver = (AndroidDriver) context.getBean("scenarioName", scenario.getName()
+            //        .replaceAll(" ",""));
             wait = new WebDriverWait(driver, 6);
         }catch (Exception e){
             System.out.println("Terjadi Error "+e.getMessage());
