@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
         //features={"classpath:features/"},
         plugin   = {"pretty"}
         )
-@ContextConfiguration("classpath:*Cucumber.xml")
+//@ContextConfiguration("classpath:*Cucumber.xml")
 public class AppTixIDRunner   {
 
 }
