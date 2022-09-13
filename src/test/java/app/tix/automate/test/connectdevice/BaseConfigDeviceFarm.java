@@ -3,8 +3,6 @@ package app.tix.automate.test.connectdevice;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -16,8 +14,7 @@ public class BaseConfigDeviceFarm {
 
     ThreadLocal<AndroidDriver<MobileElement>> driver = new ThreadLocal<>();
 
-
-    @Bean("scenarioName")
+    @Bean//("scenarioName")
     @Scope("prototype")
     public AndroidDriver setupDriverConfig(String scenarioName){
         System.out.println("Bean Scenario Dipanggil "+scenarioName);
@@ -38,8 +35,6 @@ public class BaseConfigDeviceFarm {
             System.out.println("Terjadi Error "+e.getMessage());
             return null;
         }
-
-
     }
 
 }
