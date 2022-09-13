@@ -1,15 +1,18 @@
 package app.tix.automate.test.definitions;
 
 import app.tix.automate.automate.config.AppiumConfig;
+import app.tix.automate.test.connectdevice.BaseUITest;
+import io.cucumber.java.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.lang.reflect.Method;
 
 
 public class AppTixPage {
@@ -25,6 +28,17 @@ public class AppTixPage {
     //select navigation bioscope
     By bioscopeBottomButtonTab = By.id("id.tix.android:id/navigation_theater");
 
+    @Before
+    public void fungsiDipanggil(Scenario scenario){
+        String nameofCurrMethod = new Throwable()
+                .getStackTrace()[0]
+                .getMethodName();
+        System.out.println("Fungsi Dipanggil "+nameofCurrMethod);
+        config.caps.setCapability("build", scenario.getName());
+        config.AppiumConfig();
+
+    }
+
     @Given("Open AppTixId apps")
     public void openAppTixIdDashboard(){
         System.out.println("Open AppTixId apps");
@@ -32,6 +46,7 @@ public class AppTixPage {
         //if(display) {
         //    config.wait.until(ExpectedConditions.visibilityOfElementLocated(allowButton)).click();
         //}
+
     }
 
     @And("Search city region Bekasi")
@@ -64,8 +79,16 @@ public class AppTixPage {
 
     @Then("Validate information movies and bioscope")
     public void validateInformationMoviesAndBioscope() throws InterruptedException {
+
         System.out.println("validate information movies and bioscope");
         String bioscopeContact = config.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id.tix.android:id/tv_contact"))).getText();
         Assert.assertEquals("(021)29572421", bioscopeContact);
     }
+
+    @After
+    public void dispatchDriver(){
+        config.dispatchConfig();
+    }
+
+
 }

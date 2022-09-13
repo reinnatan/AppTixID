@@ -9,20 +9,23 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import javax.annotation.PostConstruct;
 import java.net.URL;
 
 @Component
 public class AppiumConfig {
+
     public WebDriverWait wait;
     public AndroidDriver<MobileElement> driver;
+    public DesiredCapabilities caps = new DesiredCapabilities();
 
     @PostConstruct
     public void AppiumConfig() {
-
         try {
-            DesiredCapabilities caps = new DesiredCapabilities();
+
             caps.setCapability("deviceName", "Android");
             caps.setCapability("appPackage", "id.tix.android");
             caps.setCapability("appActivity", "id.tix.android.splash.view.SplashActivity");
@@ -37,16 +40,14 @@ public class AppiumConfig {
             System.out.println("Terjadi Error "+e.getMessage());
             driver.quit();
         }
-    }
-
-    @Before
-    public void setupConfig(){
-
 
     }
 
-    @After
+
     public void dispatchConfig(){
         driver.quit();
     }
+
+
+
 }
