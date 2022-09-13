@@ -42,12 +42,12 @@ public class AppTixPage {
         String nameofCurrMethod = new Throwable()
                 .getStackTrace()[0]
                 .getMethodName();
-        System.out.println("Fungsi Dipanggil "+nameofCurrMethod);
+        //System.out.println("Fungsi Dipanggil "+nameofCurrMethod);
 
         ApplicationContext context
                 = new AnnotationConfigApplicationContext(
                 BaseConfigDeviceFarm.class);
-        DesiredCapabilities caps = (DesiredCapabilities) context.getBean("scenarioName", scenario.getName());
+        DesiredCapabilities caps = (DesiredCapabilities) context.getBean("scenarioName", scenario.getName().replaceAll(" ",""));
         try {
             driver.set( new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps));
             wait = new WebDriverWait(driver.get(), 6);
