@@ -18,35 +18,6 @@ import java.net.URL;
 @Component
 public class AppiumConfig {
 
-    public WebDriverWait wait;
-    public AndroidDriver<MobileElement> driver;
-    public DesiredCapabilities caps = new DesiredCapabilities();
-
-    @PostConstruct
-    public void AppiumConfig() {
-        try {
-
-            caps.setCapability("deviceName", "Android");
-            caps.setCapability("appPackage", "id.tix.android");
-            caps.setCapability("appActivity", "id.tix.android.splash.view.SplashActivity");
-            caps.setCapability("platformName", "Android");
-            caps.setCapability("udid", "emulator-5554");
-            caps.setCapability("platformVersion", "13.0");
-            caps.setCapability("noReset", true);
-            driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps);
-            wait = new WebDriverWait(driver, 6);
-
-        }catch (Exception e){
-            System.out.println("Terjadi Error "+e.getMessage());
-            driver.quit();
-        }
-
-    }
-
-
-    public void dispatchConfig(){
-        driver.quit();
-    }
 
 
 
