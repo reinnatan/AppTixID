@@ -37,11 +37,6 @@ public class AppTixPage {
     WebDriverWait wait;
     ThreadLocal<AndroidDriver<MobileElement>> driver = new ThreadLocal<>();
 
-    @BeforeStep
-    void testBeforeMethod(){
-        System.out.println("Before Method ");
-    }
-
     @Before
     public void fungsiDipanggil(Scenario scenario){
         String nameofCurrMethod = new Throwable()
